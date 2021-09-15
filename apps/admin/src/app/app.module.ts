@@ -1,17 +1,18 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { RouterModule, Routes } from '@angular/router';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppComponent } from './app.component';
-import { RouterModule, Routes } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+
+// import { AppRoutingModule } from './app-routing.module';
+import { AuthGuard, JwtInterceptor } from '@zummy/users';
 
 //Providers Import
 import { CategoriesService } from '@zummy/products';
-import { ProductsService } from '@zummy/products';
-import { UsersService } from '@zummy/users';
-import { OrdersService } from '@zummy/orders';
+import { UsersModule } from '@zummy/users';
 import { ConfirmationService, MessageService } from 'primeng/api';
 
 //UX Component
@@ -34,7 +35,7 @@ const routes: Routes = [
   {
     path: '',
     component: ShellComponent,
-    canActivate: [],
+    canActivate: [AuthGuard],
     children: [
       {
         path: '',
@@ -86,7 +87,13 @@ const routes: Routes = [
       },
     ],
   },
+  {
+    path: '**',
+    redirectTo: '',
+    pathMatch: 'full',
+  },
 ];
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -108,16 +115,15 @@ const routes: Routes = [
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
-    RouterModule.forRoot(routes),
+    UsersModule,
+    RouterModule.forRoot(routes, { initialNavigation: 'enabled' }),
     UxModule,
   ],
   providers: [
     CategoriesService,
-    ProductsService,
-    UsersService,
-    OrdersService,
     MessageService,
     ConfirmationService,
+    { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
   ],
   bootstrap: [AppComponent],
 })
