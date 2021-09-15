@@ -11,6 +11,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CategoriesService } from '@zummy/products';
 import { ProductsService } from '@zummy/products';
 import { UsersService } from '@zummy/users';
+import { OrdersService } from '@zummy/orders';
 import { ConfirmationService, MessageService } from 'primeng/api';
 
 //UX Component
@@ -27,6 +28,7 @@ import { UsersFormComponent } from './pages/users/users-form/users-form.componen
 import { UsersListComponent } from './pages/users/users-list/users-list.component';
 import { OrdersListComponent } from './pages/orders/orders-list/orders-list.component';
 import { OrdersDetailComponent } from './pages/orders/orders-detail/orders-detail.component';
+import { DashboardComponent } from './pages/dashboard/dashboard.component';
 
 const routes: Routes = [
   {
@@ -34,6 +36,10 @@ const routes: Routes = [
     component: ShellComponent,
     canActivate: [],
     children: [
+      {
+        path: '',
+        component: DashboardComponent,
+      },
       {
         path: 'categories',
         component: CategoriesListComponent,
@@ -70,6 +76,14 @@ const routes: Routes = [
         path: 'users/form/:id',
         component: UsersFormComponent,
       },
+      {
+        path: 'orders',
+        component: OrdersListComponent,
+      },
+      {
+        path: 'orders/:id',
+        component: OrdersDetailComponent,
+      },
     ],
   },
 ];
@@ -86,6 +100,7 @@ const routes: Routes = [
     UsersListComponent,
     OrdersListComponent,
     OrdersDetailComponent,
+    DashboardComponent,
   ],
   imports: [
     BrowserModule,
@@ -100,6 +115,7 @@ const routes: Routes = [
     CategoriesService,
     ProductsService,
     UsersService,
+    OrdersService,
     MessageService,
     ConfirmationService,
   ],

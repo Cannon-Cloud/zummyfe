@@ -16,6 +16,7 @@
     "baseUrl": ".",
     "paths": {
       "@env/*": ["environments/*"],
+      "@zummy/orders": ["libs/orders/src/index.ts"],
       "@zummy/products": ["libs/products/src/index.ts"],
       "@zummy/users": ["libs/users/src/index.ts"]
     }
