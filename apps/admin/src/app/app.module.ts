@@ -9,6 +9,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 //Providers Import
 import { CategoriesService } from '@zummy/products';
+import { ProductsService } from '@zummy/products';
+import { UsersService } from '@zummy/users';
 import { ConfirmationService, MessageService } from 'primeng/api';
 
 //UX Component
@@ -19,6 +21,12 @@ import { SidebarComponent } from './shared/sidebar/sidebar.component';
 import { ShellComponent } from './shared/shell/shell.component';
 import { CategoriesListComponent } from './pages/categories/categories-list/categories-list.component';
 import { CategoriesFormComponent } from './pages/categories/categories-form/categories-form.component';
+import { ProductListComponent } from './pages/products/product-list/product-list.component';
+import { ProductFormComponent } from './pages/products/product-form/product-form.component';
+import { UsersFormComponent } from './pages/users/users-form/users-form.component';
+import { UsersListComponent } from './pages/users/users-list/users-list.component';
+import { OrdersListComponent } from './pages/orders/orders-list/orders-list.component';
+import { OrdersDetailComponent } from './pages/orders/orders-detail/orders-detail.component';
 
 const routes: Routes = [
   {
@@ -38,6 +46,30 @@ const routes: Routes = [
         path: 'categories/form/:id',
         component: CategoriesFormComponent,
       },
+      {
+        path: 'products',
+        component: ProductListComponent,
+      },
+      {
+        path: 'products/form',
+        component: ProductFormComponent,
+      },
+      {
+        path: 'products/form/:id',
+        component: ProductFormComponent,
+      },
+      {
+        path: 'users',
+        component: UsersListComponent,
+      },
+      {
+        path: 'users/form',
+        component: UsersFormComponent,
+      },
+      {
+        path: 'users/form/:id',
+        component: UsersFormComponent,
+      },
     ],
   },
 ];
@@ -48,6 +80,12 @@ const routes: Routes = [
     SidebarComponent,
     CategoriesListComponent,
     CategoriesFormComponent,
+    ProductListComponent,
+    ProductFormComponent,
+    UsersFormComponent,
+    UsersListComponent,
+    OrdersListComponent,
+    OrdersDetailComponent,
   ],
   imports: [
     BrowserModule,
@@ -58,7 +96,13 @@ const routes: Routes = [
     RouterModule.forRoot(routes),
     UxModule,
   ],
-  providers: [CategoriesService, MessageService, ConfirmationService],
+  providers: [
+    CategoriesService,
+    ProductsService,
+    UsersService,
+    MessageService,
+    ConfirmationService,
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

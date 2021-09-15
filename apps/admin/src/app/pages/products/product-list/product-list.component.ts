@@ -1,28 +1,29 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { CategoriesService, Category } from '@zummy/products';
 import { Router } from '@angular/router';
+import { Product, ProductsService } from '@zummy/products';
 import { ConfirmationService, MessageService } from 'primeng/api';
 import { ReplaySubject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 
 @Component({
-  selector: 'zummy-categories-list',
-  templateUrl: './categories-list.component.html',
+  selector: 'zummy-product-list',
+  templateUrl: './product-list.component.html',
   styles: [],
 })
-export class CategoriesListComponent implements OnInit, OnDestroy {
+export class ProductListComponent implements OnInit, OnDestroy {
   private destroy$: ReplaySubject<boolean> = new ReplaySubject(1);
 
-  categories: Category[] = [];
+  products: Product[] = [];
+
   constructor(
-    private categoriesService: CategoriesService,
-    private router: Router,
+    private productsService: ProductsService,
     private confirmationService: ConfirmationService,
-    private messageService: MessageService
+    private messageService: MessageService,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
-    this._getCategories();
+    this._getProducts();
   }
 
   ngOnDestroy(): void {
@@ -30,26 +31,26 @@ export class CategoriesListComponent implements OnInit, OnDestroy {
     this.destroy$.complete();
   }
 
-  deleteCategory(categoryId: string) {
+  deleteProduct(productId: string) {
     this.confirmationService.confirm({
-      message: 'Do you want to Delete this Category?',
-      header: 'Delete Category',
+      message: 'Do you want to delete this product?',
+      header: 'Delete Product',
       icon: 'pi pi-exclamation-triangle',
       accept: () => {
-        this.categoriesService.deleteCategory(categoryId).subscribe(
+        this.productsService.deleteProduct(productId).subscribe(
           () => {
-            this._getCategories();
+            this._getProducts();
             this.messageService.add({
               severity: 'success',
               summary: 'Success',
-              detail: 'Category Successfuly Deleted',
+              detail: 'Product Successfully Deleted',
             });
           },
           (error) => {
             this.messageService.add({
               severity: 'error',
               summary: 'Error',
-              detail: `Error Deleting Category - ${error}`,
+              detail: `Error Deleting Product - ${error}`,
             });
           }
         );
@@ -57,16 +58,16 @@ export class CategoriesListComponent implements OnInit, OnDestroy {
     });
   }
 
-  updateCategory(categoryId: string) {
-    this.router.navigateByUrl(`categories/form/${categoryId}`);
+  updateProduct(productId: string) {
+    this.router.navigateByUrl(`products/form/${productId}`);
   }
 
-  private _getCategories() {
-    this.categoriesService
-      .getCategories()
+  private _getProducts() {
+    this.productsService
+      .getProducts()
       .pipe(takeUntil(this.destroy$))
-      .subscribe((categories) => {
-        this.categories = categories;
+      .subscribe((prod) => {
+        this.products = prod;
       });
   }
 }

@@ -18,8 +18,12 @@
             "tsConfig": "apps/admin/tsconfig.app.json",
             "inlineStyleLanguage": "scss",
             "assets": ["apps/admin/src/favicon.ico", "apps/admin/src/assets"],
-            "styles": ["apps/admin/src/styles.scss"],
-            "scripts": []
+            "styles": [
+              "apps/admin/src/styles.scss",
+              "node_modules/quill/dist/quill.core.css",
+              "node_modules/quill/dist/quill.snow.css"
+            ],
+            "scripts": ["node_modules/quill/dist/quill.js"]
           },
           "configurations": {
             "production": {
@@ -134,8 +138,12 @@
             "tsConfig": "apps/e-shop/tsconfig.app.json",
             "inlineStyleLanguage": "scss",
             "assets": ["apps/e-shop/src/favicon.ico", "apps/e-shop/src/assets"],
-            "styles": ["apps/e-shop/src/styles.scss"],
-            "scripts": []
+            "styles": [
+              "node_modules/quill/dist/quill.core.css",
+              "node_modules/quill/dist/quill.snow.css",
+              "apps/e-shop/src/styles.scss"
+            ],
+            "scripts": ["node_modules/quill/dist/quill.js"]
           },
           "configurations": {
             "production": {
@@ -253,6 +261,31 @@
             "lintFilePatterns": [
               "libs/products/src/**/*.ts",
               "libs/products/src/**/*.html"
+            ]
+          }
+        }
+      }
+    },
+    "users": {
+      "projectType": "library",
+      "root": "libs/users",
+      "sourceRoot": "libs/users/src",
+      "prefix": "zummy",
+      "architect": {
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/users"],
+          "options": {
+            "jestConfig": "libs/users/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/users/src/**/*.ts",
+              "libs/users/src/**/*.html"
             ]
           }
         }

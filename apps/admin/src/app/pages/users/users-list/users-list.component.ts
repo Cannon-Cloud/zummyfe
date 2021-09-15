@@ -1,28 +1,28 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { CategoriesService, Category } from '@zummy/products';
 import { Router } from '@angular/router';
+import { UsersService, User } from '@zummy/users';
 import { ConfirmationService, MessageService } from 'primeng/api';
 import { ReplaySubject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 
 @Component({
-  selector: 'zummy-categories-list',
-  templateUrl: './categories-list.component.html',
+  selector: 'zummy-users-list',
+  templateUrl: './users-list.component.html',
   styles: [],
 })
-export class CategoriesListComponent implements OnInit, OnDestroy {
+export class UsersListComponent implements OnInit, OnDestroy {
   private destroy$: ReplaySubject<boolean> = new ReplaySubject(1);
+  users: User[] = [];
 
-  categories: Category[] = [];
   constructor(
-    private categoriesService: CategoriesService,
-    private router: Router,
+    private usersService: UsersService,
     private confirmationService: ConfirmationService,
-    private messageService: MessageService
+    private messageService: MessageService,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
-    this._getCategories();
+    this._getUsers();
   }
 
   ngOnDestroy(): void {
@@ -30,26 +30,26 @@ export class CategoriesListComponent implements OnInit, OnDestroy {
     this.destroy$.complete();
   }
 
-  deleteCategory(categoryId: string) {
+  deleteUser(userId: string) {
     this.confirmationService.confirm({
-      message: 'Do you want to Delete this Category?',
-      header: 'Delete Category',
+      message: 'Do you want to delete this user?',
+      header: 'Delete User',
       icon: 'pi pi-exclamation-triangle',
       accept: () => {
-        this.categoriesService.deleteCategory(categoryId).subscribe(
+        this.usersService.deleteUser(userId).subscribe(
           () => {
-            this._getCategories();
+            this._getUsers();
             this.messageService.add({
               severity: 'success',
               summary: 'Success',
-              detail: 'Category Successfuly Deleted',
+              detail: 'User Successfully Deleted',
             });
           },
           (error) => {
             this.messageService.add({
               severity: 'error',
               summary: 'Error',
-              detail: `Error Deleting Category - ${error}`,
+              detail: `Error Deleting User - ${error}`,
             });
           }
         );
@@ -57,16 +57,16 @@ export class CategoriesListComponent implements OnInit, OnDestroy {
     });
   }
 
-  updateCategory(categoryId: string) {
-    this.router.navigateByUrl(`categories/form/${categoryId}`);
+  updateUser(userId: string) {
+    this.router.navigateByUrl(`users/form/${userId}`);
   }
 
-  private _getCategories() {
-    this.categoriesService
-      .getCategories()
+  private _getUsers() {
+    this.usersService
+      .getUsers()
       .pipe(takeUntil(this.destroy$))
-      .subscribe((categories) => {
-        this.categories = categories;
+      .subscribe((users) => {
+        this.users = users;
       });
   }
 }
