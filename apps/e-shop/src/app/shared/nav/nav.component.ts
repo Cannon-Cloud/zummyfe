@@ -1,16 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'zummy-nav',
   templateUrl: './nav.component.html',
-  styles: [
-  ]
+  styles: [],
 })
-export class NavComponent implements OnInit {
-
-  constructor() { }
-
-  ngOnInit(): void {
-  }
-
-}
+export class NavComponent {}
