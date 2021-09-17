@@ -12,6 +12,7 @@ import { NavComponent } from './shared/nav/nav.component';
 import { ProductsModule } from '@zummy/products';
 
 import { ButtonModule } from 'primeng/button';
+import { BadgeModule } from 'primeng/badge';
 
 import { UiModule } from '@zummy/ui';
 import { HttpClientModule } from '@angular/common/http';
@@ -19,6 +20,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { CheckboxModule } from 'primeng/checkbox';
 
 import { OrdersModule } from '@zummy/orders';
+
+import { CartIconComponent } from 'libs/orders/src/lib/components/cart-icon/cart-icon.component';
 
 import { CategoriesBannerComponent } from '../../../../libs/products/src/lib/components/categories-banner/categories-banner.component';
 
@@ -32,9 +35,11 @@ const routes: Routes = [{ path: '', component: HomePageComponent }];
     MessagesComponent,
     NavComponent,
     CategoriesBannerComponent,
+    CartIconComponent,
   ],
   imports: [
     BrowserModule,
+    OrdersModule,
     RouterModule.forRoot(routes),
     BrowserAnimationsModule,
     HttpClientModule,
@@ -42,7 +47,7 @@ const routes: Routes = [{ path: '', component: HomePageComponent }];
     UiModule,
     ButtonModule,
     CheckboxModule,
-    OrdersModule,
+    BadgeModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
