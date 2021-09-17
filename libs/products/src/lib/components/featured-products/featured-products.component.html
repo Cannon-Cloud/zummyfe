@@ -1,1 +1,8 @@
-<p>featured-products works!</p>
+<div class="featured-products p-mt-5">
+  <h3 class="p-mb-1">Feautured Products</h3>
+  <div class="p-grid">
+    <div class="p-col-3" *ngFor="let product of featuredProducts">
+      <zummy-product-item [product]="product"></zummy-product-item>
+    </div>
+  </div>
+</div>

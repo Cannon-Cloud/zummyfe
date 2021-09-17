@@ -5,8 +5,8 @@ export class Product {
   name: any;
   description?: string;
   richDescription?: string;
-  image?: string | null;
-  images?: string[];
+  image!: string;
+  images!: string[];
   brand?: string;
   price!: number;
   category!: Category;

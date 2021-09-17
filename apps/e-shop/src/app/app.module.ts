@@ -11,6 +11,15 @@ import { MessagesComponent } from './shared/messages/messages.component';
 import { NavComponent } from './shared/nav/nav.component';
 import { ProductsModule } from '@zummy/products';
 
+import { ButtonModule } from 'primeng/button';
+
+import { UiModule } from '@zummy/ui';
+import { HttpClientModule } from '@angular/common/http';
+
+import { CheckboxModule } from 'primeng/checkbox';
+
+import { CategoriesBannerComponent } from '../../../../libs/products/src/lib/components/categories-banner/categories-banner.component';
+
 const routes: Routes = [{ path: '', component: HomePageComponent }];
 @NgModule({
   declarations: [
@@ -20,12 +29,17 @@ const routes: Routes = [{ path: '', component: HomePageComponent }];
     HeaderComponent,
     MessagesComponent,
     NavComponent,
+    CategoriesBannerComponent,
   ],
   imports: [
     BrowserModule,
     RouterModule.forRoot(routes),
     BrowserAnimationsModule,
+    HttpClientModule,
     ProductsModule,
+    UiModule,
+    ButtonModule,
+    CheckboxModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

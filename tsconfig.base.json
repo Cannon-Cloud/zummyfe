@@ -5,7 +5,7 @@
     "sourceMap": true,
     "declaration": false,
     "moduleResolution": "node",
-    "emitDecoratorMetadata": true,
+    "emitDecoratorMetadata": false,
     "experimentalDecorators": true,
     "importHelpers": true,
     "target": "es2015",
@@ -13,11 +13,13 @@
     "lib": ["es2017", "dom"],
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
+    "strictPropertyInitialization": false,
     "baseUrl": ".",
     "paths": {
       "@env/*": ["environments/*"],
       "@zummy/orders": ["libs/orders/src/index.ts"],
       "@zummy/products": ["libs/products/src/index.ts"],
+      "@zummy/ui": ["libs/ui/src/index.ts"],
       "@zummy/users": ["libs/users/src/index.ts"]
     }
   },

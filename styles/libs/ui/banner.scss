@@ -1,11 +1,11 @@
 .banner {
   height: 280px;
   width: 100%;
-  background-color: #d7effb;
+  background-color: $accent-color;
   border-radius: 15px;
 
   &-text {
-    color: var(--surface-700);
+    color: $primary-color;
     margin-top: 50px;
 
     h1 {
