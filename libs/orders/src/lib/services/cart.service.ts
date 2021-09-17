@@ -36,6 +36,8 @@ export class CartService {
     if (stringCart) {
       const cart = JSON.parse(stringCart);
       return cart;
+    } else {
+      return { items: [] };
     }
   }
 
