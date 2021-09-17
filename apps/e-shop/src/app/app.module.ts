@@ -13,6 +13,8 @@ import { ProductsModule } from '@zummy/products';
 
 import { ButtonModule } from 'primeng/button';
 import { BadgeModule } from 'primeng/badge';
+import { ToastModule } from 'primeng/toast';
+import { MessageService } from 'primeng/api';
 
 import { UiModule } from '@zummy/ui';
 import { HttpClientModule } from '@angular/common/http';
@@ -48,8 +50,9 @@ const routes: Routes = [{ path: '', component: HomePageComponent }];
     ButtonModule,
     CheckboxModule,
     BadgeModule,
+    ToastModule,
   ],
-  providers: [],
+  providers: [MessageService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

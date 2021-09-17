@@ -10,7 +10,7 @@ import { Product, ProductsService } from '@zummy/products';
 })
 export class ProductPageComponent implements OnInit {
   product!: Product;
-  quantity!: number;
+  quantity = 1;
 
   constructor(
     private prodService: ProductsService,
