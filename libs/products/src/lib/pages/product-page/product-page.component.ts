@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { CartItem, CartService } from '@zummy/orders';
 import { Product, ProductsService } from '@zummy/products';
 
 @Component({
@@ -13,7 +14,8 @@ export class ProductPageComponent implements OnInit {
 
   constructor(
     private prodService: ProductsService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private cartService: CartService
   ) {}
 
   ngOnInit(): void {
@@ -25,7 +27,12 @@ export class ProductPageComponent implements OnInit {
   }
 
   addProductToCart() {
-    console.log('addtocart');
+    const cartItem: CartItem = {
+      productId: this.product.id,
+      quantity: this.quantity,
+    };
+
+    this.cartService.setCartItem(cartItem);
   }
 
   private _getProduct(id: string) {

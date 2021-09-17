@@ -1,7 +1,7 @@
 <div class="product-page" *ngIf="product">
   <div class="p-grid">
     <div class="p-col-6">
-      <zummy-gallery [image]="product.image"></zummy-gallery>
+      <img src="{{ product.image }}" />
     </div>
     <div class="p-col-6 product">
       <h2 class="product-name">{{ product.name }}</h2>

@@ -18,6 +18,8 @@ import { HttpClientModule } from '@angular/common/http';
 
 import { CheckboxModule } from 'primeng/checkbox';
 
+import { OrdersModule } from '@zummy/orders';
+
 import { CategoriesBannerComponent } from '../../../../libs/products/src/lib/components/categories-banner/categories-banner.component';
 
 const routes: Routes = [{ path: '', component: HomePageComponent }];
@@ -40,6 +42,7 @@ const routes: Routes = [{ path: '', component: HomePageComponent }];
     UiModule,
     ButtonModule,
     CheckboxModule,
+    OrdersModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

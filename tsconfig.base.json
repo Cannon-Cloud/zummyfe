@@ -14,6 +14,7 @@
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
     "strictPropertyInitialization": false,
+    "noImplicitReturns": false,
     "baseUrl": ".",
     "paths": {
       "@env/*": ["environments/*"],
